@@ -83,11 +83,11 @@ let iterator = (function *(arr) {
 
 可迭代对象有一个属性，值为函数，而键名是 `Symbol.iterator` 这个唯一值。
 
-新的 `for-of` 结构和解构运算符都需要接收一个 **可迭代对象** 。
+新的 `for-of` 循环和展开运算符都需要接收一个 **可迭代对象** 。
 如果处理的是一个对象，则会判断对象上是否有 `Symbol.iterator` 这个属性，属性值是否是一个函数，是则执行这个函数，得到迭代器。
 否则抛出一个错误，提示该对象不是一个 **可迭代对象** 。
 
-`ES6` 中数组和 `Map`、`Set` 的实例都默认有 `Symbol.iterator` 属性，所以可以用于 `for-of` 结构和解构运算符。
+`ES6` 中数组和 `Map`、`Set` 的实例都默认有 `Symbol.iterator` 属性，所以可以用于 `for-of` 循环和展开运算符。
 
 要自定义一个 **可迭代对象** ，可以在一个对象上增加 `Symbol.iterator` 属性，代码如下：
 
@@ -118,7 +118,7 @@ iterator[Symbol.iterator] = function() {
 `iterator` 既是一个 **迭代器对象**，同是又是一个 **可迭代对象** 。
 因为它既有 `next` 方法，又有 `Symbol.iterator` 属性。
 
-这个 `iterator` 对象也可以用于 `for-of` 结构和解构运算符，如下所示：
+这个 `iterator` 对象也可以用于 `for-of` 循环和展开运算符，如下所示：
 
 ```javascript
 let arr_new = [...iterator];  // arr_new = [1, 3, 5]
@@ -127,7 +127,7 @@ let arr_new = [...iterator];  // arr_new = [1, 3, 5]
 这意味着， **可迭代对象** 的 `Symbol.iterator` 属性值不一定非得是生成器函数，即使是普通函数，但只要函数返回值是迭代器即可。
 
 另外，`Symbol.iterator` 属性所对应的函数里可以使用 `this` 。
-在 `for-of` 结构和解构运算符调用的情况下，`this` 会指向 **可迭代对象** 。
+在 `for-of` 循环和展开运算符调用的情况下，`this` 会指向 **可迭代对象** 。
 
 而且，`Symbol.iterator` 属性所对应函数的返回值不一定非得是一个 `Generator` 的实例。
 即使是一个普通对象，但有 `next` 方法即可。
